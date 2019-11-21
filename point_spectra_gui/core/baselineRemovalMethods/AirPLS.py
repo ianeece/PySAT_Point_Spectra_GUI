@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets
-from libpysat.transform.baseline_code.airpls import AirPLS
+from libpyhat.transform.baseline_code.airpls import AirPLS
 
 from point_spectra_gui.ui.AirPLS import Ui_Form
 from point_spectra_gui.util.Modules import Modules
@@ -25,7 +25,7 @@ class Ui_Form(Ui_Form, Modules):
 
     def run(self):
         methodParameters = {'smoothness_': float(self.smoothnessSpinBox.value()),
-                            'conv_thresh_': int(self.convergenceThresholdDoubleSpinBox.value()),
+                            'conv_thresh_': float(self.convergenceThresholdDoubleSpinBox.value()),
                             'max_iters_': float(self.maxNumOfIterationsSpinBox.value())}
 
         return methodParameters, self.getChangedValues(methodParameters, AirPLS())

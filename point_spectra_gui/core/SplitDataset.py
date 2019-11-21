@@ -14,14 +14,21 @@ class SplitDataset(Ui_Form, Modules):
     def get_widget(self):
         return self.formGroupBox
 
-    def connectWidgets(self):
+    def connectWidgets(self,setup=False):
         try:
             self.setComboBox(self.chooseDataComboBox, self.datakeys)
             self.setComboBox(self.splitOnUniqueValuesOfComboBox, self.get_choices())
         except:
             pass
+        if setup == False:
+            self.chooseDataComboBox.currentIndexChanged.connect(self.update_split_choices)
 
-    def run(self):
+    def update_split_choices(self):
+        choices = self.get_choices()
+        if choices != None:
+            self.setComboBox(self.splitOnUniqueValuesOfComboBox, self.get_choices())
+
+    def update_datakeys(self,setup=False):
         datakey = self.chooseDataComboBox.currentText()
         colname = self.splitOnUniqueValuesOfComboBox.currentText()
         vars_level0 = self.data[datakey].df.columns.get_level_values(0)
@@ -34,8 +41,17 @@ class SplitDataset(Ui_Form, Modules):
         unique_values = np.unique(coldata)
         for i in unique_values:
             new_datakey = datakey + ' - ' + str(i)
-            self.datakeys.append(new_datakey)
-            self.data[new_datakey] = spectral_data(self.data[datakey].df.ix[coldata == i])
+            if not new_datakey in self.datakeys:
+                self.datakeys.append(new_datakey)
+                if setup == False:
+                    self.data[new_datakey] = spectral_data(self.data[datakey].df.ix[coldata == i])
+
+    def setup(self):
+        self.connectWidgets(setup=True)
+        self.update_datakeys(setup=True)
+
+    def run(self):
+        self.update_datakeys(setup=False)
 
     def get_choices(self):
         try:

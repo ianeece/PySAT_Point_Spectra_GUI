@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Form</class>
  <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>475</width>
+    <height>216</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -13,55 +21,116 @@
      </property>
      <layout class="QFormLayout" name="formLayout">
       <item row="0" column="0">
-       <widget class="QLabel" name="CalTran_dataSetRefLabel">
+       <widget class="QLabel" name="infolabel">
         <property name="text">
-         <string>Reference Data Set:</string>
+         <string>Transfer will be for A to B.</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="CalTran_dataSetRefLineEdit"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="CalTran_dataSetTransformLabel">
-        <property name="text">
-         <string>Data Set to Transform:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="CalTran_dataSetTransformLineEdit"/>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="CalTran_columnToMatchLabel">
-        <property name="text">
-         <string>Column to Match:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QComboBox" name="CalTran_columnToMatchComboBox"/>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="methodLabel">
-        <property name="text">
-         <string>Method:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QComboBox" name="methodComboBox">
+      <item row="1" column="0" colspan="2">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <property name="text">
-          <string>LRA - Low Rank Alignment</string>
-         </property>
+         <layout class="QHBoxLayout" name="DataA_HLayout">
+          <item>
+           <widget class="QLabel" name="DataA_label">
+            <property name="text">
+             <string>Data set A:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="chooseDataA"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="DataAMatch_label">
+            <property name="text">
+             <string>Column to match on:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="chooseDataAMatch"/>
+          </item>
+         </layout>
         </item>
         <item>
-         <property name="text">
-          <string>PDS - Piecewise Direct Standardization</string>
-         </property>
+         <layout class="QHBoxLayout" name="DataB_HLayout">
+          <item>
+           <widget class="QLabel" name="DataB_label">
+            <property name="text">
+             <string>Data Set B:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="chooseDataB"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="DataBMatch_label">
+            <property name="text">
+             <string>Column to match on:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="chooseDataBMatch"/>
+          </item>
+         </layout>
         </item>
-       </widget>
+        <item>
+         <layout class="QHBoxLayout" name="Transform_HLayout">
+          <item>
+           <widget class="QLabel" name="DatatoTransform_label">
+            <property name="text">
+             <string>Data set to transform:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="chooseDatatoTransform"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="Method_HLayout">
+          <item>
+           <widget class="QLabel" name="Method_label">
+            <property name="text">
+             <string>Method:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="chooseMethod">
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>0</height>
+             </size>
+            </property>
+            <item>
+             <property name="text">
+              <string>Choose a method</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>PDS - Piecewise Direct Standardization</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Ratio</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="methodlayout"/>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>

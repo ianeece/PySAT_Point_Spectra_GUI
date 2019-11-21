@@ -16,7 +16,7 @@ class LoadData(Ui_loadData, Modules):
     def __init__(self):
         LoadData.count += 1
         self.curr_count = LoadData.count
-        print('Added LoadData with ID {}'.format(self.curr_count))
+        #print('Added LoadData with ID {}'.format(self.curr_count))
 
     def delete(self):
         try:
@@ -35,6 +35,17 @@ class LoadData(Ui_loadData, Modules):
 
     def connectWidgets(self):
         self.newFilePushButton.clicked.connect(lambda: self.getDataButton_clicked(self.fileNameLineEdit))
+        self.dataSetNameLineEdit.editingFinished.connect(lambda: self.update_dataname())
+
+
+    def update_dataname(self):
+        keyname = self.dataSetNameLineEdit.text()
+        filename = self.fileNameLineEdit.text()
+        self.list_amend(self.datakeys, self.curr_count, keyname)
+        try:
+            self.data[keyname] = spectral_data(pd.read_csv(filename, header=[0, 1], verbose=False, nrows=2))
+        except:
+            pass
 
     def getDataButton_clicked(self, lineEdit):
         filename, _filter = QtWidgets.QFileDialog.getOpenFileName(None, "Open Data File", self.outpath, "(*.csv)")
@@ -49,19 +60,15 @@ class LoadData(Ui_loadData, Modules):
 
         :return:
         """
-        try:
-            filename = self.fileNameLineEdit.text()
-            keyname = self.dataSetNameLineEdit.text()
-            self.data[keyname] = spectral_data(pd.read_csv(filename, header=[0, 1], verbose=True, nrows=2))
-            self.list_amend(self.datakeys, self.curr_count, keyname)
-        except:
-            pass
+        self.update_dataname()
 
-    def run(self):
-        filename = self.fileNameLineEdit.text()
-        keyname = self.dataSetNameLineEdit.text()
+    def run(self, filename = None, keyname = None):
+        if filename == None:
+            filename = self.fileNameLineEdit.text()
+        if keyname == None:
+            keyname = self.dataSetNameLineEdit.text()
         print('Loading data file: ' + str(filename))
-        self.data[keyname] = spectral_data(pd.read_csv(filename, header=[0, 1], verbose=True))
+        self.data[keyname] = spectral_data(pd.read_csv(filename, header=[0, 1], verbose=False))
         self.list_amend(self.datakeys, self.curr_count, keyname)
 
 

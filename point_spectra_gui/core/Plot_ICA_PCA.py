@@ -29,8 +29,8 @@ class Plot_ICA_PCA(Ui_Form, Modules):
         cmap = 'viridis'
         datakey = self.chooseDataComboBox.currentText()
         method = self.chooseMethodComboBox.currentText()
-        x_component = int(self.chooseXVariableComboBox.currentText())
-        y_component = int(self.chooseYVariableComboBox.currentText())
+        x_component = self.chooseXVariableComboBox.currentText()
+        y_component = self.chooseYVariableComboBox.currentText()
         if self.colorCodedVariableComboBox.currentText() != 'None':
             colorvar = self.colorCodedVariableComboBox.currentText()
         else:

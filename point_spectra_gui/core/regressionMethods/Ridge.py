@@ -35,7 +35,7 @@ class Ui_Form(Ui_Form, Ridge, RidgeCV, Modules):
                   'normalize': self.normalizeCheckBox.isChecked(),
                   'solver': 'auto',
                   'tol': self.toleranceDoubleSpinBox.value(),
-                  'random_state': None
+                  'random_state': 1
                   }
         return params, self.getChangedValues(params, Ridge())
 

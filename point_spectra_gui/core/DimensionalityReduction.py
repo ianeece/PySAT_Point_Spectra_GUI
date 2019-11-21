@@ -5,7 +5,7 @@ from point_spectra_gui.core.dimensionalityReductionMethods import *
 from point_spectra_gui.ui.DimensionalityReduction import Ui_Form
 from point_spectra_gui.util.Modules import Modules
 from point_spectra_gui.util.spectral_data import spectral_data
-from libpysat.transform.dim_red import dim_red
+from libpyhat.transform.dim_red import dim_red
 
 class DimensionalityReduction(Ui_Form, Modules):
     def setupUi(self, Form):
@@ -16,6 +16,7 @@ class DimensionalityReduction(Ui_Form, Modules):
 
     def get_widget(self):
         return self.formGroupBox
+
 
     def connectWidgets(self):
         self.algorithm_list = ['Choose an algorithm',
@@ -89,8 +90,7 @@ class DimensionalityReduction(Ui_Form, Modules):
         params, modelkey = self.getMethodParams(self.chooseMethodComboBox.currentIndex())
         load_fit = False
         col = 'wvl'
-        df, do_dim_red=dim_red(self.data[datakey].df,col, method, [], params, load_fit=load_fit)
-        self.data[datakey] = spectral_data(df, dim_red = do_dim_red)
+        df, PCA_obj = dim_red(self.data[datakey].df, col, method, [], params, load_fit)
 
     def make_dimred_widget(self, alg, params=None):
         self.hideAll()

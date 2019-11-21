@@ -2,13 +2,12 @@ import numpy as np
 import pandas as pd
 from PyQt5 import QtWidgets
 from point_spectra_gui.util import Qtickle
-from libpysat.regression import cv
+from libpyhat.regression import cv
 from point_spectra_gui.util.spectral_data import spectral_data
 from point_spectra_gui.core.crossValidateMethods import *
 from point_spectra_gui.ui.CrossValidation import Ui_Form
 from point_spectra_gui.util.Modules import Modules
 from sklearn.model_selection import ParameterGrid, LeaveOneGroupOut
-
 
 class CrossValidation(Ui_Form, Modules):
     count = -1
@@ -44,7 +43,8 @@ class CrossValidation(Ui_Form, Modules):
                                'OMP',
                                'PLS',
                                'Ridge',
-                               'SVR']
+                               'SVR',
+                               'Local Regression']
 
         self.setComboBox(self.chooseDataComboBox, self.datakeys)
         self.setComboBox(self.chooseAlgorithmComboBox, self.algorithm_list)
@@ -54,6 +54,7 @@ class CrossValidation(Ui_Form, Modules):
         self.changeComboListVars(self.yVariableList, self.yvar_choices())
         self.changeComboListVars(self.xVariableList, self.xvar_choices())
         self.xvar_choices()
+        self.progbar.setValue(0)
         self.chooseAlgorithmComboBox.currentIndexChanged.connect(
             lambda: self.make_regression_widget(self.chooseAlgorithmComboBox.currentText()))
         self.chooseDataComboBox.currentIndexChanged.connect(
@@ -195,7 +196,11 @@ class CrossValidation(Ui_Form, Modules):
         match = np.squeeze((y > yrange[0]) & (y < yrange[1]))
         data_for_cv = spectral_data(self.data[datakey].df.ix[match])
         paramgrid = list(ParameterGrid(params))  # create a grid of parameter permutations
-        cv_obj = cv.cv(paramgrid)
+
+
+        # progbar = QtWidgets.QProgressBar()
+        cv_obj = cv.cv(paramgrid,progressbar=self.progbar)
+
         try:
             cv_iterator = LeaveOneGroupOut().split(data_for_cv.df[xvars], data_for_cv.df[yvars], data_for_cv.df[
                 ('meta', 'Folds')])  # create an iterator for cross validation based on the predefined folds
@@ -233,8 +238,14 @@ class CrossValidation(Ui_Form, Modules):
                     self.data['Model Coefficients'] = spectral_data(coef)
                     self.datakeys.append('Model Coefficients')
 
-        self.datakeys.append('CV Results ' + modelkey)
-        self.data['CV Results ' + modelkey] = self.cv_results
+        number = 1
+        cvid = str('CV Results ' + modelkey + ' - ' + yvars[0][1])
+        while cvid in self.datakeys:
+            number += 1
+            cvid = str('CV Results ' + modelkey + ' - ' + yvars[0][1]) + ' - ' + str(number)
+
+        self.datakeys.append(cvid)
+        self.data[cvid] = spectral_data(self.cv_results)
 
     def yvar_choices(self):
         try:
@@ -269,7 +280,8 @@ class CrossValidation(Ui_Form, Modules):
                     'OMP': cv_OMP.Ui_Form(),
                     'PLS': cv_PLS.Ui_Form(),
                     'Ridge': cv_Ridge.Ui_Form(),
-                    'SVR': cv_SVR.Ui_Form()
+                    'SVR': cv_SVR.Ui_Form(),
+                    'Local Regression': cv_Local.Ui_Form()
                     }
 
         for item in self.alg:

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>PYSAT Point Spectra GUI</string>
+   <string>PyHAT Point Spectra GUI</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -40,8 +40,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>560</width>
-         <height>298</height>
+         <width>571</width>
+         <height>314</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2"/>
@@ -165,14 +165,13 @@
      <x>0</x>
      <y>0</y>
      <width>603</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionSet_Output_Path"/>
     <addaction name="separator"/>
     <addaction name="actionLoad_Data"/>
     <addaction name="actionRead_ChemCam_Data"/>
@@ -181,7 +180,6 @@
     <addaction name="separator"/>
     <addaction name="actionRestore_Workflow"/>
     <addaction name="actionSave_Current_Workflow"/>
-    <addaction name="actionClear_Workflow"/>
     <addaction name="separator"/>
     <addaction name="actionCreate_New_Workflow"/>
     <addaction name="actionExit"/>
@@ -190,11 +188,12 @@
     <property name="title">
      <string>Preprocessing</string>
     </property>
+    <addaction name="actionLook_Up_Metadata"/>
     <addaction name="actionRemove_Rows"/>
     <addaction name="actionCombine_Data_Sets"/>
     <addaction name="actionOutlier_Removal"/>
     <addaction name="actionSplit_Data"/>
-    <addaction name="actionInterpolate"/>
+    <addaction name="actionResample"/>
     <addaction name="actionRemove_Baseline"/>
     <addaction name="actionApply_Mask"/>
     <addaction name="actionPeak_Areas"/>
@@ -203,6 +202,9 @@
     <addaction name="actionDimensionality_Reduction"/>
     <addaction name="actionStratified_Folds"/>
     <addaction name="actionSpectral_Derivative"/>
+    <addaction name="actionWavelength_Shift"/>
+    <addaction name="actionCalibration_Transfer"/>
+    <addaction name="actionCalibration_Transfer_CV"/>
    </widget>
    <widget class="QMenu" name="menuRegression">
     <property name="title">
@@ -211,9 +213,12 @@
     <addaction name="actionCross_Validation"/>
     <addaction name="actionTrain"/>
     <addaction name="actionPredict"/>
+    <addaction name="actionLocal_Regression"/>
     <addaction name="actionSubmodel_Blend"/>
     <addaction name="actionSave_Trained_Model"/>
     <addaction name="actionRestore_Trained_Model"/>
+    <addaction name="actionSave_Regression_Model"/>
+    <addaction name="actionRestore_Regression_Model"/>
    </widget>
    <widget class="QMenu" name="menuVisualization">
     <property name="title">
@@ -222,6 +227,7 @@
     <addaction name="actionPlot"/>
     <addaction name="actionPlot_Spectra"/>
     <addaction name="actionPlot_ICA_PCA"/>
+    <addaction name="actionPlot_testmodule"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -325,9 +331,9 @@
     <string>Split Data</string>
    </property>
   </action>
-  <action name="actionInterpolate">
+  <action name="actionResample">
    <property name="text">
-    <string>Interpolate</string>
+    <string>Resample</string>
    </property>
   </action>
   <action name="actionRemove_Baseline">
@@ -503,6 +509,46 @@
   <action name="actionCluster">
    <property name="text">
     <string>Clustering</string>
+   </property>
+  </action>
+  <action name="actionLook_Up_Metadata">
+   <property name="text">
+    <string>Look Up Metadata</string>
+   </property>
+  </action>
+  <action name="actionLocal_Regression">
+   <property name="text">
+    <string>Local Regression</string>
+   </property>
+  </action>
+  <action name="actionWavelength_Shift">
+   <property name="text">
+    <string>Wavelength Shift</string>
+   </property>
+  </action>
+  <action name="actionPlot_testmodule">
+   <property name="text">
+    <string>plot_testmodule</string>
+   </property>
+  </action>
+  <action name="actionCalibration_Transfer">
+   <property name="text">
+    <string>Calibration Transfer</string>
+   </property>
+  </action>
+  <action name="actionCalibration_Transfer_CV">
+   <property name="text">
+    <string>Calibration Transfer CV</string>
+   </property>
+  </action>
+  <action name="actionSave_Regression_Model">
+   <property name="text">
+    <string>Save Regression Model</string>
+   </property>
+  </action>
+  <action name="actionRestore_Regression_Model">
+   <property name="text">
+    <string>Restore Regression Model</string>
    </property>
   </action>
  </widget>

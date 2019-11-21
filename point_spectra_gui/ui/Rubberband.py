@@ -15,12 +15,12 @@ class Ui_Form(object):
         self.formLayout_2 = QtWidgets.QFormLayout(self.groupbox)
         self.formLayout_2.setFieldGrowthPolicy(QtWidgets.QFormLayout.AllNonFixedFieldsGrow)
         self.formLayout_2.setObjectName("formLayout_2")
-        self.windowSizeLabel = QtWidgets.QLabel(self.groupbox)
-        self.windowSizeLabel.setObjectName("windowSizeLabel")
-        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.windowSizeLabel)
-        self.windowSizeSpinBox = QtWidgets.QSpinBox(self.groupbox)
-        self.windowSizeSpinBox.setObjectName("windowSizeSpinBox")
-        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.windowSizeSpinBox)
+        self.n_iter_label = QtWidgets.QLabel(self.groupbox)
+        self.n_iter_label.setObjectName("n_iter_label")
+        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.n_iter_label)
+        self.n_iter_spin = QtWidgets.QSpinBox(self.groupbox)
+        self.n_iter_spin.setObjectName("n_iter_spin")
+        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.n_iter_spin)
         self.numOfRangesLabel = QtWidgets.QLabel(self.groupbox)
         self.numOfRangesLabel.setObjectName("numOfRangesLabel")
         self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.numOfRangesLabel)
@@ -35,8 +35,8 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(("Form"))
-        self.windowSizeLabel.setText(("Window Size"))
-        self.numOfRangesLabel.setText(("Num of Ranges"))
+        self.n_iter_label.setText(("# iterations"))
+        self.numOfRangesLabel.setText(("# ranges"))
 
 
 if __name__ == "__main__":

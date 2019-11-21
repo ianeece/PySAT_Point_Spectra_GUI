@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>659</width>
+    <height>579</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="formGroupBox">
+     <property name="title">
+      <string>Calibration Transfer Cross Validation</string>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="infolabel">
+        <property name="text">
+         <string>Evaluates multiple methods and parameters to optimize calibration transfer. Transfer is A to B.</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <layout class="QHBoxLayout" name="DataA_HLayout">
+          <item>
+           <widget class="QLabel" name="DataA_label">
+            <property name="text">
+             <string>Data set A:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="chooseDataA"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="DataAMatch_label">
+            <property name="text">
+             <string>Column to match on:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="chooseDataAMatch"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="DataB_HLayout">
+          <item>
+           <widget class="QLabel" name="DataB_label">
+            <property name="text">
+             <string>Data Set B:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="chooseDataB"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="DataBMatch_label">
+            <property name="text">
+             <string>Column to match on:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="chooseDataBMatch"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="keep_spectra_checkBox">
+          <property name="text">
+           <string>Keep transformed spectra (uncheck for faster performance)</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="choosemethodstext">
+          <property name="text">
+           <string>Choose which methods to evaluate:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="Ratiocheckbox">
+          <property name="text">
+           <string>Ratio</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="RatioLayout"/>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="DScheckbox">
+          <property name="text">
+           <string>DS - Direct Standardization</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="DSlayout"/>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="PDScheckbox">
+          <property name="text">
+           <string>PDS - Piecewise Direct Standardization</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="PDSlayout"/>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="PDSPLScheckBox">
+          <property name="text">
+           <string>PDS-PLS - PDS using Partial Least Squares</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="PDSPLSlayout"/>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="LASSODScheckbox">
+          <property name="text">
+           <string>LASSO DS</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="LASSODSlayout"/>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="RidgeDScheckBox">
+          <property name="text">
+           <string>Ridge DS</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="RidgeDSlayout"/>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="SparseDScheckBox">
+          <property name="text">
+           <string>Sparse Low-Rank DS</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="SparseLayout"/>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="CCAcheckBox">
+          <property name="text">
+           <string>CCA - Canonical Correlation Analysis</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="CCAlayout"/>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="NewCCAcheckBox">
+          <property name="text">
+           <string>New CCA</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="NewCCALayout"/>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="IPDDScheckBox">
+          <property name="text">
+           <string>Incremental Proximal Descent DS</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="IPDDSlayout"/>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="ForwardBackwardcheckBox">
+          <property name="text">
+           <string>Forward Backward DS</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="FBDSlayout"/>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

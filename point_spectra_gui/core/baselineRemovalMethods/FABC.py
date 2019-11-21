@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets
-from libpysat.transform.baseline_code.fabc import FABC
+from libpyhat.transform.baseline_code.fabc import FABC
 
 from point_spectra_gui.ui.FABC import Ui_Form
 from point_spectra_gui.util.Modules import Modules
@@ -12,7 +12,7 @@ class Ui_Form(Ui_Form, Modules):
         Modules.setupUi(self, Form)
 
     def get_widget(self):
-        return self.groupbox
+        return self.groupBox
 
     def setHidden(self, bool):
         self.get_widget().setHidden(bool)

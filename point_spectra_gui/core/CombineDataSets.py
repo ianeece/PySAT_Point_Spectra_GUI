@@ -20,16 +20,28 @@ class CombineDataSets(Ui_Form, Modules):
     def get_widget(self):
         return self.formGroupBox
 
-    def connectWidgets(self):
+    def connectWidgets(self,setup=False):
         self.setComboBox(self.dataSet1ComboBox, self.datakeys)
         self.setComboBox(self.dataSet2ComboBox, self.datakeys)
+        if setup == False:
+            self.outputToDataSetLineEdit.editingFinished.connect(self.combine_data)
 
-    def run(self):
+    def combine_data(self):
         dataSet1 = self.dataSet1ComboBox.currentText()
         dataSet2 = self.dataSet2ComboBox.currentText()
         newkey = self.outputToDataSetLineEdit.text()
-        self.datakeys.append(newkey)
-        self.data[newkey] = spectral_data(pd.concat([self.data[dataSet1].df, self.data[dataSet2].df], ignore_index=True))
+        if newkey != '':
+            self.datakeys.append(newkey)
+            try:
+                self.data[newkey] = spectral_data(pd.concat([self.data[dataSet1].df, self.data[dataSet2].df], ignore_index=True))
+            except:
+                pass
+
+    def setup(self):
+        self.connectWidgets(setup=True)
+
+    def run(self):
+        self.combine_data()
 
 
 if __name__ == "__main__":

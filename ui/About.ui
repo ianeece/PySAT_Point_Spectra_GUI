@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>221</width>
-    <height>79</height>
+    <width>268</width>
+    <height>96</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
       </font>
      </property>
      <property name="text">
-      <string>PySAT Point Spectra Gui</string>
+      <string>PyHAT Point Spectra GUI</string>
      </property>
      <property name="textFormat">
       <enum>Qt::AutoText</enum>

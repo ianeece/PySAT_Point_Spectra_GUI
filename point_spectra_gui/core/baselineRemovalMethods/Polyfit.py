@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets
-from libpysat.transform.baseline_code.polyfit import PolyFit
+from libpyhat.transform.baseline_code.polyfit import PolyFit
 
 from point_spectra_gui.ui.Polyfit import Ui_Form
 from point_spectra_gui.util.Modules import Modules
@@ -21,6 +21,7 @@ class Ui_Form(Ui_Form, Modules):
         br = PolyFit()
         self.orderSpinBox.setValue(br.poly_order_)
         self.numOfStandardDeviationsSpinBox.setValue(br.stdv_)
+        self.maxNumOfIterationsSpinBox.setValue(br.max_iter_)
 
     def run(self):
         methodParameters = {'poly_order_': self.orderSpinBox.value(),

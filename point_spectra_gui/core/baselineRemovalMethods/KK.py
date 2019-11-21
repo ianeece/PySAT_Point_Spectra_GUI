@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets
-from libpysat.transform.baseline_code.kajfosz_kwiatek import KajfoszKwiatek as KK
+from libpyhat.transform.baseline_code.kajfosz_kwiatek import KajfoszKwiatek as KK
 
 from point_spectra_gui.ui.KK import Ui_Form
 from point_spectra_gui.util.Modules import Modules

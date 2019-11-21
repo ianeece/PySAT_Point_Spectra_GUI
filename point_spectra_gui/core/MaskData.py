@@ -3,7 +3,7 @@ from PyQt5 import QtWidgets
 from point_spectra_gui.ui.MaskData import Ui_Form
 from point_spectra_gui.util.Modules import Modules
 from point_spectra_gui.util.spectral_data import spectral_data
-from libpysat.transform.mask import mask
+from libpyhat.transform.mask import mask
 
 
 class MaskData(Ui_Form, Modules):
@@ -26,6 +26,7 @@ class MaskData(Ui_Form, Modules):
 
     def setup(self):
         try:
+            self.setComboBox(self.chooseDataComboBox, self.datakeys)
             self.run() #mask is pretty quick to run, so just call it when running setup
         except:
             pass
@@ -33,7 +34,7 @@ class MaskData(Ui_Form, Modules):
     def run(self):
         datakey = self.chooseDataComboBox.currentText()
         maskfile = self.maskFileLineEdit.text()
-        self.data[datakey] = spectral_data(mask(self.data[datakey].df, maskfile, maskvar='wvl'))
+        self.data[datakey].mask(maskfile, maskvar='wvl')
         print("Mask applied")
 
 

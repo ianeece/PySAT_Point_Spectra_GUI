@@ -4,8 +4,9 @@ from PyQt5 import QtWidgets
 from point_spectra_gui.ui.PlotSpectra import Ui_Form
 from point_spectra_gui.util.Modules import Modules
 from point_spectra_gui.util.plots import make_plot
-from libpysat.utils.utils import enumerate_duplicates
+from libpyhat.utils.utils import enumerate_duplicates
 from point_spectra_gui.util.spectral_data import spectral_data
+
 class PlotSpectra(Ui_Form, Modules):
     def setupUi(self, Form):
         super().setupUi(Form)
@@ -118,7 +119,7 @@ class PlotSpectra(Ui_Form, Modules):
         xmin = self.minDoubleSpinBox.value()
         xmax = self.maxDoubleSpinBox.value()
         xrange = [xmin, xmax]
-        self.data[datakey] = spectral_data(enumerate_duplicates(self.data[datakey].df,col))
+        self.data[datakey].enumerate_duplicates(col)
         data = self.data[datakey].df
 
         y = np.squeeze(np.array(data.loc[data[('meta', col)].isin([row])][xcol].T))

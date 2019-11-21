@@ -30,7 +30,7 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(("About"))
-        self.appNameLabel.setText(("PySAT Point Spectra Gui"))
+        self.appNameLabel.setText(("PyHAT Point Spectra GUI"))
         self.versionLabel.setText(("Version "))
         self.poweredByLabel.setText(("Powered by Qt for Python"))
 

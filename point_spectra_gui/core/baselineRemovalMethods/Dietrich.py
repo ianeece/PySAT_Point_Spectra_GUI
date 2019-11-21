@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets
-from libpysat.transform.baseline_code.dietrich import Dietrich
+from libpyhat.transform.baseline_code.dietrich import Dietrich
 
 from point_spectra_gui.ui.Dietrich import Ui_Form
 from point_spectra_gui.util.Modules import Modules

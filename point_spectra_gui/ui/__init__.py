@@ -32,6 +32,19 @@ from point_spectra_gui.ui import SplitDataset
 from point_spectra_gui.ui import StratifiedFolds
 from point_spectra_gui.ui import SubmodelBlend
 from point_spectra_gui.ui import SVR
+from point_spectra_gui.ui import CalibrationTransfer
+from point_spectra_gui.ui import CalibrationTransferCV
+from point_spectra_gui.ui import caltran_cv_PDS
+from point_spectra_gui.ui import caltran_cv_LASSODS
+from point_spectra_gui.ui import caltran_cv_DS
+from point_spectra_gui.ui import caltran_PDS
+from point_spectra_gui.ui import caltran_cv_PDS_PLS
+
+
+
+
+
+
 
 
 

@@ -1,5 +1,4 @@
 import inspect
-
 from PyQt5.QtCore import QSettings
 from PyQt5.QtWidgets import *
 from point_spectra_gui.util import Qtickle
@@ -219,25 +218,38 @@ class Modules:
         """
         comboBox.clear()
         comboBox.setMaximumWidth(400)
+        try:
+            keyValues = [str(i) for i in keyValues] #force all elements of the list to be strings
+        except:
+            pass
         comboBox.addItems(keyValues)
+
 
     @staticmethod
     def changeComboListVars(obj, newchoices):
         """
-        Function changes combo boxes
+        Function changes combo boxes or list widgets
         This function does not need to be overridden.
 
         :param obj:
         :param newchoices:
         :return:
         """
+        if isinstance(obj, QComboBox):
+            obj_sel = obj.currentIndex()
+        elif isinstance(obj, QListWidget):
+            obj_sel = [x for x in obj.selectedIndexes()]
         obj.clear()
         for i in newchoices:
             if isinstance(i, tuple):
                 obj.addItem(i[1])
             elif isinstance(i, str):
                 obj.addItem(i)
-
+        if isinstance(obj,QComboBox):
+            obj.setCurrentIndex(obj_sel)
+        elif isinstance(obj, QListWidget):
+            for indx in obj_sel:
+                obj.setCurrentItem(obj.itemFromIndex(indx))
     @staticmethod
     def setListWidget(obj, choices):
         """
@@ -248,9 +260,15 @@ class Modules:
         :param choices:
         :return:
         """
-        obj.clear()
-        for item in choices:
+
+        # obj_sel = [x for x in obj.selectedIndexes()] #save the currently selected items
+        obj.clear() #clear the list
+
+        for item in choices: #repopulate the list with the new choices
             obj.addItem(item)
+        # for indx in obj_sel: #re-select the items
+        #     obj.setCurrentItem(obj.itemFromIndex(indx))
+
 
     @staticmethod
     def defaultComboItem(obj, item):

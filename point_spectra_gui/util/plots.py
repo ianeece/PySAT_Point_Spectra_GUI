@@ -17,8 +17,8 @@ def cmaps():
     plot.register_cmap(name='plasma', cmap=colormaps.plasma)
 
 
-def make_plot(x, y, figpath, figfile=None, xrange=None, yrange=None, xtitle='Reference (wt.%)',
-              ytitle='Prediction (wt.%)', title=None,
+def make_plot(x, y, figpath, figfile=None, xrange=None, yrange=None, xtitle='Reference (wt.%)', colorvar = 'None',
+              colorval = None, ytitle='Prediction (wt.%)', title=None,
               lbl='', one_to_one=False, rmse=True, dpi=1000, color=None, annot_mask=None, cmap=None, colortitle='',
               loadfig=None, masklabel='', marker='o', linestyle='None', hline=None, hlinelabel=None, hlinestyle='--',
               yzero=False, linewidth=1.0, vlines=None):
@@ -54,21 +54,47 @@ def make_plot(x, y, figpath, figfile=None, xrange=None, yrange=None, xtitle='Ref
             rmse_val = np.sqrt(np.mean((y - x) ** 2))
             lbl = lbl + ' (RMSE=' + str(round(rmse_val, 2)) + ')'
 
-    if cmap is not None:
-        axes.plot(x, y, c=color, cmap=cmap, marker=marker, markeredgecolor='Black', markeredgewidth=0.25)
-        axes.colorbar(label=colortitle)
-    else:
-        axes.plot(x, y, color=color, label=lbl, marker=marker, ls=linestyle, linewidth=linewidth,
-                  markeredgecolor='Black', markeredgewidth=0.25)
+    # if cmap is not None:
+    #     axes.plot(x, y, c=color, cmap=cmap, marker=marker, markeredgecolor='Black', markeredgewidth=0.25)
+    #     axes.colorbar(label=colortitle)
+    # else:
+    #     axes.plot(x, y, color=color, label=lbl, marker=marker, ls=linestyle, linewidth=linewidth,
+    #               markeredgecolor='Black', markeredgewidth=0.25)
+    #
+    #     if annot_mask is not None:
+    #         axes.plot(x[annot_mask], y[annot_mask], facecolors='none', linewidth=linewidth, label=masklabel,
+    #                   marker=marker, markeredgecolor='Black', markeredgewidth=2)
 
-        if annot_mask is not None:
-            axes.plot(x[annot_mask], y[annot_mask], facecolors='none', linewidth=linewidth, label=masklabel,
-                      marker=marker, markeredgecolor='Black', markeredgewidth=2)
+    if colorvar != 'None':
+        try:
+            mappable = axes.scatter(np.squeeze(x), np.squeeze(y), c=colorval, cmap=cmap, linewidth=0.2, edgecolor='Black')
+        except:
+            pass
+            # try:
+            #     mappable = axes.scatter(np.squeeze(x), np.squeeze(y), c=colorval, cmap=cmap, linewidth=0.2, edgecolor='Black')
+            # except:
+            #     pass
+            # except:
+            #     try:
+            #         mappable = axes.scatter(np.squeeze(x), np.squeeze(y), c=data.df[('K-Means', colorvar)], cmap=cmap,
+            #                            linewidth=0.2, edgecolor='Black')
+            #     except:
+            #         try:
+            #             mappable = axes.scatter(np.squeeze(x), np.squeeze(y), c=data.df[('Spectral', colorvar)],
+            #                                    cmap=cmap,
+            #                                    linewidth=0.2, edgecolor='Black')
+            #         except:
+            # TODO: handle any top-level label for colorval and clean up these nested try/excepts
+        fig.colorbar(mappable, label=colorvar, ax=axes)
+    elif colorvar == 'None':
+        axes.plot(x, y, linewidth=0.2, markeredgecolor='Black', markeredgewidth=0.25, label=lbl, color = color, linestyle=linestyle, marker=marker)
+        if lbl != '':
+            axes.legend(loc='best', fontsize=8, scatterpoints=1, numpoints=1)
 
     if yzero:
         axes.set_ylim(bottom=0)
 
-    axes.legend(loc='best', fontsize=8, scatterpoints=1, numpoints=1)
+
     if figpath and figfile:
         fig.savefig(figpath + '/' + figfile, dpi=dpi)
     return fig
@@ -115,8 +141,20 @@ def pca_ica_plot(data, x_component, y_component, colorvar=None, cmap='viridis', 
         try:
             mappable = ax1.scatter(np.squeeze(x), np.squeeze(y), c=data.df[('comp', colorvar)], cmap=cmap, linewidth=0.2, edgecolor='Black')
         except:
-            mappable = ax1.scatter(np.squeeze(x), np.squeeze(y), c=data.df[('meta', colorvar)], cmap=cmap, linewidth=0.2, edgecolor='Black')
-            # TODO: handle any top-level label for colorval, not just comp or meta
+            try:
+                mappable = ax1.scatter(np.squeeze(x), np.squeeze(y), c=data.df[('meta', colorvar)], cmap=cmap, linewidth=0.2, edgecolor='Black')
+            except:
+                try:
+                    mappable = ax1.scatter(np.squeeze(x), np.squeeze(y), c=data.df[('K-Means', colorvar)], cmap=cmap,
+                                       linewidth=0.2, edgecolor='Black')
+                except:
+                    try:
+                        mappable = ax1.scatter(np.squeeze(x), np.squeeze(y), c=data.df[('Spectral', colorvar)],
+                                               cmap=cmap,
+                                               linewidth=0.2, edgecolor='Black')
+                    except:
+                        pass
+            # TODO: handle any top-level label for colorval and clean up these nested try/excepts
         fig.colorbar(mappable, label=colorvar, ax=ax1)
     else:
         ax1.scatter(x, y, linewidth=0.2, edgecolor='Black')
@@ -141,3 +179,20 @@ def pca_ica_plot(data, x_component, y_component, colorvar=None, cmap='viridis', 
 
     if figpath and figfile:
         fig.savefig(figpath + '\\' + figfile, dpi=1000)
+
+# def stratifiedfoldshist(data, datakey, colname, folds):
+#     #datakey = self.chooseDataToStratifyComboBox.currentText()
+#     #colname = ('comp', self.chooseVarComboBox.currentText())
+#     #folds = data[datakey].df[('meta', 'Folds')]
+#     folds_unique = folds.unique()[np.isfinite(folds.unique())]
+#     for fold in folds_unique:
+#         dat_col_folds = data[datakey].df[colname][folds == fold]
+#         plot.hist(dat_col_folds, bins=20)
+#         plot.xlabel(colname[1])
+#         plot.ylabel('Frequency')
+#         plot.title('Histogram of Fold ' + str(int(fold)))
+#         #plt.axis([0, 100, 0, 100])
+#         #plt.grid(True)
+#         plot.show()
+#         plot.savefig(outpath + '//' + colname[1] + '_fold' + str(int(fold)) + '_hist.png')
+#         plot.clf()

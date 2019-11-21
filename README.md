@@ -8,17 +8,17 @@
 
 ### 1. Fresh install of Miniconda (Skip to step 2 if you have Anaconda/Miniconda)
 
-\*Note for Windows: Please make sure you do not have any previous versions of Python on your system. If you do, it may make it difficult for Anaconda/Miniconda to use the command `conda`
-<br>If you're still having issues with uninstalling Python, I recommend using <a href ="https://www.iobit.com/en/advanceduninstaller.php?">IObit Uninstaller</a><br>
-Lastly, if all else fails, try turning your machine off and then on again.
-
 Install <a href="https://conda.io/miniconda.html">Miniconda</a>
+
+\*Note for Windows: If you have previous versions of Python on your system, it may make it difficult for Anaconda/Miniconda to use the command `conda`. If this is the case, you have two options:
+1. You can choose to uninstall previous versions of Python using <a href ="https://www.iobit.com/en/advanceduninstaller.php?">IObit Uninstaller</a><br>
+2. If uninstalling previous version of Python is not an option, you can do a <a href="https://www.anaconda.com/download/">full Anaconda install</a> and then use the Anaconda Prompt that gets installed with it to execute the following commands.
 
 ### 2. Download the environment file (right click the link and save)
 
 [Environment.yml](https://raw.githubusercontent.com/USGS-Astrogeology/PySAT_Point_Spectra_GUI/master/environment.yml)
 
-### 3. Open a terminal (on Windows, `cmd`, not Powershell) in the directory where you saved the file and type:
+### 3. Open a terminal (on Windows, use the Anaconda prompt or `cmd`, not Powershell) in the directory where you saved the file and type:
 
 ```bash
 conda --v # this will give you your version, make sure it is 4 or greater, if not use the below command

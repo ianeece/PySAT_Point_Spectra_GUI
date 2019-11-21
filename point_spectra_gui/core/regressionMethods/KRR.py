@@ -18,12 +18,12 @@ class Ui_Form(Ui_Form, KernelRidge, Modules):
         self.get_widget().setHidden(bool)
 
     def connectWidgets(self):
-        print("alpha", self.alpha)
-        print("kernel", self.kernel)
-        print("gamma", self.gamma)
-        print("degree", self.degree)
-        print("coef0", self.coef0)
-        print("kernel_params", self.kernel_params)
+        # print("alpha", self.alpha)
+        # print("kernel", self.kernel)
+        # print("gamma", self.gamma)
+        # print("degree", self.degree)
+        # print("coef0", self.coef0)
+        # print("kernel_params", self.kernel_params)
         self.alphaSpinBox.setValue(self.alpha)
         self.kernelParametersLineEdit.setText(str(self.kernel_params))
         self.gammaLineEdit.setText(str(self.gamma))

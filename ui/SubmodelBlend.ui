@@ -603,7 +603,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QComboBox" name="chooseDataComboBox"/>
+       <widget class="QComboBox" name="ChooseDataComboBox"/>
       </item>
       <item row="17" column="5">
        <widget class="QDoubleSpinBox" name="maxSpinBox_14">

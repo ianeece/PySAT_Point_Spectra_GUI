@@ -138,6 +138,26 @@ class point_spectra_gui_clean_ui(Command):
             log.warn("'%s' does not exist -- can't clean it", pyfile)
 
 
+class point_spectra_gui_test_ui(Command):
+    description = "test the compiled Qt UI files and resources"
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        from time import sleep
+        from threading import Thread
+        from point_spectra_gui.core.MainWindow import main
+
+        t = Thread(target=main)
+        t.daemon = True
+        t.start()
+        sleep(10)
+
 setup(
     name=PACKAGE_NAME,
     version=__version__,
@@ -158,9 +178,10 @@ setup(
     cmdclass={
         'build_ui': point_spectra_gui_build_ui,
         'clean_ui': point_spectra_gui_clean_ui,
+        'test_ui': point_spectra_gui_test_ui
     },
     classifiers=[
-        'License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)',
+        #'License :: Unlicense',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Operating System :: Microsoft :: Windows',

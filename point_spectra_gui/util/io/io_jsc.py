@@ -5,7 +5,6 @@ import pandas as pd
 from pandas.core.common import array_equivalent
 
 from libpysat.fileio.utils import file_search
-from libpysat.spectral.spectral_data import spectral_data
 
 
 # This function reads the lookup tables used to expand metadata from the file names
@@ -14,6 +13,9 @@ from libpysat.spectral.spectral_data import spectral_data
 #
 # Info in the tables is stored in a dict of dataframes so that only one variable
 # (the dict) needs to be passed between functions
+from point_spectra_gui.util.spectral_data import spectral_data
+
+
 def read_refdata(LUT_files):
     ID_info = pd.read_csv(LUT_files['ID'], index_col=0)
     spectrometer_info = pd.read_csv(LUT_files['spect'], index_col=0)

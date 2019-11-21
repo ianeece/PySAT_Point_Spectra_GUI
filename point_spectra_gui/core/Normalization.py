@@ -4,7 +4,7 @@ from PyQt5 import QtWidgets
 from point_spectra_gui.ui.Normalization import Ui_Form
 from point_spectra_gui.util.Modules import Modules
 from point_spectra_gui.util.spectral_data import spectral_data
-from libpysat.transform.norm import norm
+from libpyhat.transform.norm import norm
 
 class norm_range:
     def __init__(self, minLabel, minSpin, maxLabel, maxSpin, hidden):
@@ -112,7 +112,7 @@ class Normalization(Ui_Form, Modules):
             self.ranges[i].setLimits(datamin, datamax)
         try:
             if type(tempmin) is not str:
-                self.setDataRanges()
+                pass #self.setDataRanges()   #this was buggy, removing for now
         except:
             pass
 
@@ -185,7 +185,7 @@ class Normalization(Ui_Form, Modules):
                 pass
         try:
             col_var = self.varToNormalizeListWidget.currentItem().text()
-            self.data[datakey]=spectral_data(norm(self.data[datakey].df,range_vals, col_var))
+            self.data[datakey].norm(range_vals, col_var)
             print("Normalization has been applied to the ranges: " + str(range_vals))
             print("{}".format(range_vals))
         except Exception as e:

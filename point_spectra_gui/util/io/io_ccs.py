@@ -9,9 +9,8 @@ import pandas as pd
 import scipy.io as io
 from PyQt5 import QtCore
 
-from libpysat.fileio.lookup import lookup
-from libpysat.fileio.utils import file_search
-from libpysat.spectral.spectral_data import spectral_data
+from libpyhat.data.io import lookup, file_search
+from point_spectra_gui.util.spectral_data import spectral_data
 
 
 def CCAM_CSV(input_data):

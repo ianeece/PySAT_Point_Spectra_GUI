@@ -5,7 +5,7 @@ from point_spectra_gui.core import CombineDataSets
 from point_spectra_gui.core import CrossValidation
 from point_spectra_gui.core import DataTable
 from point_spectra_gui.core import DimensionalityReduction
-from point_spectra_gui.core import Interpolation
+from point_spectra_gui.core import Resample
 from point_spectra_gui.core import LoadData
 from point_spectra_gui.core import MainWindow
 from point_spectra_gui.core import MaskData
@@ -30,4 +30,11 @@ from point_spectra_gui.core import StratifiedFolds
 from point_spectra_gui.core import SubmodelBlend
 from point_spectra_gui.core import WriteToCSV
 from point_spectra_gui.core import Clustering
+from point_spectra_gui.core import Lookup
+from point_spectra_gui.core import LocalRegression
+from point_spectra_gui.core import ShiftWvl
+from point_spectra_gui.core import CalibrationTransfer
+from point_spectra_gui.core import CalibrationTransferCV
+from point_spectra_gui.core import SaveRegressionModel
+from point_spectra_gui.core import RestoreRegressionModel
 from point_spectra_gui.core.regressionMethods import *

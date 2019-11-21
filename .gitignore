@@ -1,8 +1,5 @@
 # PSG things
 
-point_spectra_gui/ui/*
-
-
 #iPython
 /.ipynb*
 
@@ -225,6 +222,5 @@ venv.bak/
 # End of https://www.gitignore.io/api/jupyternotebook
 
 # UI files
-point_spectra_gui/ui/
 *.json
 *.tram

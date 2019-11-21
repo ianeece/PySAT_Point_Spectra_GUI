@@ -2,30 +2,38 @@
 <ui version="4.0">
  <class>Form</class>
  <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>302</width>
+    <height>97</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QGroupBox" name="">
+    <widget class="QGroupBox" name="groupbox">
      <layout class="QFormLayout" name="formLayout_2">
       <property name="fieldGrowthPolicy">
        <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
       </property>
       <item row="0" column="0">
-       <widget class="QLabel" name="windowSizeLabel">
+       <widget class="QLabel" name="n_iter_label">
         <property name="text">
-         <string>Window Size</string>
+         <string># iterations</string>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QSpinBox" name="windowSizeSpinBox"/>
+       <widget class="QSpinBox" name="n_iter_spin"/>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="numOfRangesLabel">
         <property name="text">
-         <string>Num of Ranges</string>
+         <string># ranges</string>
         </property>
        </widget>
       </item>

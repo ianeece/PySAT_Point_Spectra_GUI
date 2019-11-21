@@ -7,7 +7,7 @@ dependencies:
  - scipy
  - matplotlib
  - scikit-learn
- - pip:
-   - libpysat
-   - qtmodern
-   - point_spectra_gui
+ - docutils
+ - PyYAML=3.12
+ - cython
+ - libpyhat

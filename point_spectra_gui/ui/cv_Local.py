@@ -1,0 +1,98 @@
+# -*- coding: utf-8 -*-
+
+# Automatically generated - don't edit.
+# Use `python setup.py build_ui` to update it.
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+class Ui_Form(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(Form.sizePolicy().hasHeightForWidth())
+        Form.setSizePolicy(sizePolicy)
+        self.verticalLayout = QtWidgets.QVBoxLayout(Form)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.groupBox = QtWidgets.QGroupBox(Form)
+        self.groupBox.setObjectName("groupBox")
+        self.formLayout = QtWidgets.QFormLayout(self.groupBox)
+        self.formLayout.setFieldGrowthPolicy(QtWidgets.QFormLayout.AllNonFixedFieldsGrow)
+        self.formLayout.setObjectName("formLayout")
+        self.alg_label = QtWidgets.QLabel(self.groupBox)
+        self.alg_label.setObjectName("alg_label")
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.alg_label)
+        self.neighbors_label = QtWidgets.QLabel(self.groupBox)
+        self.neighbors_label.setObjectName("neighbors_label")
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.neighbors_label)
+        self.fitInterceptLabel = QtWidgets.QLabel(self.groupBox)
+        self.fitInterceptLabel.setObjectName("fitInterceptLabel")
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.fitInterceptLabel)
+        self.fit_intercept_list = QtWidgets.QListWidget(self.groupBox)
+        self.fit_intercept_list.setMaximumSize(QtCore.QSize(16777215, 50))
+        self.fit_intercept_list.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
+        self.fit_intercept_list.setObjectName("fit_intercept_list")
+        item = QtWidgets.QListWidgetItem()
+        self.fit_intercept_list.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        self.fit_intercept_list.addItem(item)
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.fit_intercept_list)
+        self.forcePositiveCoefficientsLabel = QtWidgets.QLabel(self.groupBox)
+        self.forcePositiveCoefficientsLabel.setObjectName("forcePositiveCoefficientsLabel")
+        self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.forcePositiveCoefficientsLabel)
+        self.forcePositive_list = QtWidgets.QListWidget(self.groupBox)
+        self.forcePositive_list.setMaximumSize(QtCore.QSize(16777215, 50))
+        self.forcePositive_list.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
+        self.forcePositive_list.setObjectName("forcePositive_list")
+        item = QtWidgets.QListWidgetItem()
+        self.forcePositive_list.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        self.forcePositive_list.addItem(item)
+        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.forcePositive_list)
+        self.n_neighbors_lineEdit = QtWidgets.QLineEdit(self.groupBox)
+        self.n_neighbors_lineEdit.setObjectName("n_neighbors_lineEdit")
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.n_neighbors_lineEdit)
+        self.choose_alg_comboBox = QtWidgets.QComboBox(self.groupBox)
+        self.choose_alg_comboBox.setObjectName("choose_alg_comboBox")
+        self.choose_alg_comboBox.addItem("")
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.choose_alg_comboBox)
+        self.verticalLayout.addWidget(self.groupBox)
+
+        self.retranslateUi(Form)
+        QtCore.QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QtCore.QCoreApplication.translate
+        Form.setWindowTitle(("Form"))
+        self.groupBox.setToolTip(("<html><head/><body><p>The <span style=\" font-weight:600;\">Lasso</span> is a linear model that estimates sparse coefficients. It is useful in some contexts due to its tendency to prefer solutions with fewer parameter values, effectively reducing the number of variables upon which the given solution is dependent. For this reason, the Lasso and its variants are fundamental to the field of compressed sensing. Under certain conditions, it can recover the exact set of non-zero weights (see Compressive sensing: tomography reconstruction with L1 prior (Lasso)).</p></body></html>"))
+        self.alg_label.setText(("Algorithm"))
+        self.neighbors_label.setText(("# of neighbors"))
+        self.fitInterceptLabel.setText(("Fit Intercept"))
+        __sortingEnabled = self.fit_intercept_list.isSortingEnabled()
+        self.fit_intercept_list.setSortingEnabled(False)
+        item = self.fit_intercept_list.item(0)
+        item.setText(("True"))
+        item = self.fit_intercept_list.item(1)
+        item.setText(("False"))
+        self.fit_intercept_list.setSortingEnabled(__sortingEnabled)
+        self.forcePositiveCoefficientsLabel.setText(("Force positive coefficients"))
+        __sortingEnabled = self.forcePositive_list.isSortingEnabled()
+        self.forcePositive_list.setSortingEnabled(False)
+        item = self.forcePositive_list.item(0)
+        item.setText(("True"))
+        item = self.forcePositive_list.item(1)
+        item.setText(("False"))
+        self.forcePositive_list.setSortingEnabled(__sortingEnabled)
+        self.choose_alg_comboBox.setItemText(0, ("LASSO"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Form = QtWidgets.QWidget()
+    ui = Ui_Form()
+    ui.setupUi(Form)
+    Form.show()
+    sys.exit(app.exec_())
+

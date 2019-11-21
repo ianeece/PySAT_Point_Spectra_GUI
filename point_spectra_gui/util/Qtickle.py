@@ -176,10 +176,11 @@ class Qtickle(object):
                         for i in index:
                             matching_items = obj.findItems(i, QtCore.Qt.MatchExactly)
                             for item in matching_items:
-                                item.setSelected(True)
+                                obj.setCurrentItem(item)
 
             except Exception as e:
-                print(e)
+                pass
+                #print(e)
 
     def guiChanged(self, functionCall):
         """
@@ -295,7 +296,7 @@ class Qtickle(object):
                     for i in index:
                         matching_items = obj.findItems(i, QtCore.Qt.MatchExactly)
                         for item in matching_items:
-                            item.setSelected(True)
-
+                            obj.setCurrentItem(item)
             except Exception as e:
-                print(e)
+                pass
+                #print(e)

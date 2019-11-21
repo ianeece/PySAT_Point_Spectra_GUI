@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from PyQt5 import QtWidgets
 from point_spectra_gui.util import Qtickle
-from libpysat.regression import regression
+from libpyhat.regression import regression
 from point_spectra_gui.util.spectral_data import spectral_data
 from point_spectra_gui.core.regressionMethods import *
 from point_spectra_gui.ui.RegressionTrain import Ui_Form
@@ -38,7 +38,7 @@ class RegressionTrain(Ui_Form, Modules):
 
     def make_regression_widget(self, alg, params=None):
         self.hideAll()
-        print(alg)
+        #print(alg)
         try:
             self.alg[alg].setHidden(False)
         except:
@@ -56,9 +56,11 @@ class RegressionTrain(Ui_Form, Modules):
                                'ARD',
                                'LARS',
                                # 'LASSO LARS', - This is having issues. Hide until we can debug
-                               'SVR']
-        self.setComboBox(self.chooseDataComboBox, self.datakeys)
+                               'SVR',
+                               'GBR',
+                               'GP']
         self.setComboBox(self.chooseAlgorithmComboBox, self.algorithm_list)
+        self.setComboBox(self.chooseDataComboBox, self.datakeys)
         self.yMaxDoubleSpinBox.setMaximum(999999)
         self.yMinDoubleSpinBox.setMaximum(999999)
         self.yMaxDoubleSpinBox.setValue(100)
@@ -67,10 +69,11 @@ class RegressionTrain(Ui_Form, Modules):
         self.xvar_choices()
         self.chooseAlgorithmComboBox.currentIndexChanged.connect(
             lambda: self.make_regression_widget(self.chooseAlgorithmComboBox.currentText()))
-        self.chooseDataComboBox.currentIndexChanged.connect(
-            lambda: self.changeComboListVars(self.yVariableList, self.yvar_choices()))
-        self.chooseDataComboBox.currentIndexChanged.connect(
-            lambda: self.changeComboListVars(self.xVariableList, self.xvar_choices()))
+        self.chooseDataComboBox.currentIndexChanged.connect(self.refreshLists)
+
+    def refreshLists(self):
+        self.changeComboListVars(self.yVariableList, self.yvar_choices())
+        self.changeComboListVars(self.xVariableList, self.xvar_choices())
 
     def getGuiParams(self):
         """
@@ -118,18 +121,31 @@ class RegressionTrain(Ui_Form, Modules):
             self.alg[keys[i - 1]].selectiveSetGuiParams(dict[i])
 
     def setup(self):
+        self.setComboBox(self.chooseDataComboBox, self.datakeys)
+
         method = self.chooseAlgorithmComboBox.currentText()
         xvars = [str(x.text()) for x in self.xVariableList.selectedItems()]
         yvars = [('comp', str(y.text())) for y in self.yVariableList.selectedItems()]
         yrange = [self.yMinDoubleSpinBox.value(), self.yMaxDoubleSpinBox.value()]
         try:
             params, modelkey = self.alg[self.chooseAlgorithmComboBox.currentText()].run()
-            modelkey = "{} - {} - ({}, {}) {}".format(method, yvars[0][-1], yrange[0], yrange[1], modelkey)
+            try:
+                modelkey = "{} - {} - ({}, {}) {}".format(method, yvars[0][-1], yrange[0], yrange[1], modelkey)
+            except:
+                modelkey = "Problem naming model - make sure you have selected a y variable"
+                pass
             self.list_amend(self.modelkeys, self.curr_count, modelkey)
-            print(params, modelkey)
+            #print(params, modelkey)
             self.models[modelkey] = regression.regression([method], [yrange], [params])
             self.model_xvars[modelkey] = xvars
             self.model_yvars[modelkey] = yvars
+
+            if 'Model Coefficients' not in self.datakeys:
+                self.datakeys.append('Model Coefficients')
+
+            else:
+                pass
+
         except:
             pass
 
@@ -143,8 +159,12 @@ class RegressionTrain(Ui_Form, Modules):
         params, modelkey = self.alg[self.chooseAlgorithmComboBox.currentText()].run()
         modelkey = "{} - {} - ({}, {}) {}".format(method, yvars[0][-1], yrange[0], yrange[1], modelkey)
         self.list_amend(self.modelkeys, self.curr_count, modelkey)
-        print(params, modelkey)
+        #print(params, modelkey)
+        print('SQUEEEEEEEZE')
+
         self.models[modelkey] = regression.regression([method], [yrange], [params])
+        print('SQUEEEEEEEZE')
+
         x = self.data[datakey].df[xvars]
         y = self.data[datakey].df[yvars]
         x = np.array(x)
@@ -206,7 +226,8 @@ class RegressionTrain(Ui_Form, Modules):
                     'OMP': OMP.Ui_Form(),
                     'PLS': PLS.Ui_Form(),
                     'Ridge': Ridge.Ui_Form(),
-                    'SVR': SVR.Ui_Form()
+                    'SVR': SVR.Ui_Form(),
+                    'GBR': GBR.Ui_Form()
                     }
 
         for item in self.alg:

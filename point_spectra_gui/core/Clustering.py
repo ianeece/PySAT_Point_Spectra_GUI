@@ -4,7 +4,7 @@ from point_spectra_gui.util import Qtickle
 from point_spectra_gui.core.clusteringMethods import *
 from point_spectra_gui.ui.Clustering import Ui_Form
 from point_spectra_gui.util.Modules import Modules
-from libpysat.clustering.cluster import cluster
+from libpyhat.clustering.cluster import cluster
 from point_spectra_gui.util.spectral_data import spectral_data
 
 
@@ -84,7 +84,7 @@ class Clustering(Ui_Form, Modules):
         datakey = self.chooseDataComboBox.currentText()
         params, modelkey = self.getMethodParams(self.chooseMethodComboBox.currentIndex())
         col = [str(i.text()) for i in self.variables_list.selectedItems()]
-        self.data[datakey] = spectral_data(cluster(self.data[datakey].df, col, method, [], params))
+        self.data[datakey].cluster(col, method, [], params)
 
     def make_cluster_widget(self, alg):
         self.hideAll()

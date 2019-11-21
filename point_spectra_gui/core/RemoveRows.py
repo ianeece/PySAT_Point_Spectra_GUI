@@ -181,9 +181,9 @@ class RemoveRows(Ui_Form, Modules):
             # choices = choices[~np.isnan(choices)]
             # nchoices2 = choices.size
             nchoice = []
-            choices = np.sort(choices)
+            #choices = np.sort(choices)
             choices = [str(i) for i in choices]
-
+            choices.sort()
             for choice in choices:
                 if not choice + ' : ' + str(choices.count(choice)) in nchoice:
                     nchoice.append(choice + ' : ' + str(choices.count(choice)))

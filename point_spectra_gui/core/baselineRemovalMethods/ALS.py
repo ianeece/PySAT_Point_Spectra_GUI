@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets
-from libpysat.transform.baseline_code.als import ALS
+from libpyhat.transform.baseline_code.als import ALS
 
 from point_spectra_gui.ui.ALS import Ui_Form
 from point_spectra_gui.util.Modules import Modules
